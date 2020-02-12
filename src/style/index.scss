@@ -1,0 +1,23 @@
+body {
+	font-family: Comfortaa;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	width: 700px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+.heading-wrapper {
+	background-color: #111111;
+	color: #eeeeee;
+}
+
+.searchbar-wrapper {
+	background-color: #eeeeee;
+}
