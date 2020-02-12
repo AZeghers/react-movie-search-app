@@ -1,20 +1,22 @@
 import React from 'react'
 import { useSearchContext } from '../hooks/useSearch'
 import '../style/dropdown.scss'
+import { useMoviesContext } from '../hooks/useMovies'
 
 export const Dropdown = () => {
-	const { query, results, setQuery, fillList } = useSearchContext()
+	const { suggestions, setQuery } = useSearchContext()
+	const { fillMovieList } = useMoviesContext()
 
 	const handleOnClick = (e) => {
 		setQuery(e.target.textContent)
-		fillList()
+		fillMovieList(e.target.textContent)
 	}
 
-	if (!results.length) return <div />
+	if (!suggestions.length) return <div />
 
 	return (
-		<div className="dropdown-container">
-			{results.map(({ id, original_title }) => (
+		<div className="dropdown">
+			{suggestions.map(({ id, original_title }) => (
 				<div className="dropdown-item" key={id} onMouseDown={handleOnClick}>
 					{original_title}
 				</div>

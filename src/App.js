@@ -2,23 +2,26 @@ import React from 'react'
 import { Searchbar } from './components/Searchbar'
 import { MoviesList } from './components/MoviesList'
 import { SearchProvider } from './hooks/useSearch'
+import { MoviesProvider } from './hooks/useMovies'
 
 function App() {
 	return (
 		<SearchProvider>
-			<div className="heading-wrapper">
-				<div className="container">
-					<h1>bonjour c'est moi le movie search</h1>
+			<MoviesProvider>
+				<div className="heading-wrapper">
+					<div className="container">
+						<h1>bonjour c'est moi le movie search</h1>
+					</div>
 				</div>
-			</div>
-			<div className="searchbar-wrapper">
-				<div className="container">
-					<Searchbar />
+				<div className="searchbar-wrapper">
+					<div className="container">
+						<Searchbar />
+					</div>
 				</div>
-			</div>
-			<div className="container">
-				<MoviesList />
-			</div>
+				<div className="container">
+					<MoviesList />
+				</div>
+			</MoviesProvider>
 		</SearchProvider>
 	)
 }

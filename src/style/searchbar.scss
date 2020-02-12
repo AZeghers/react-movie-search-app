@@ -6,7 +6,7 @@ input {
 	padding: 10px;
 
 	&[type='search'] {
-		flex: 1;
+		width: 100%;
 		line-height: 1rem;
 		color: #3d3d3d;
 		border: 1px solid #dbdbdb;
@@ -35,15 +35,20 @@ input {
 	}
 }
 
-input + input {
+.search-container {
+	display: flex;
+}
+
+.searchbar-dropdown-container + input {
 	margin-left: 12px;
 }
 
-.searchbar-container {
+.searchbar-dropdown-container {
+	flex: 1;
 	display: flex;
 	position: relative;
 }
 
-.searchbar-container:focus-within .dropdown-container {
+.searchbar-dropdown-container:focus-within .dropdown {
 	display: block;
 }

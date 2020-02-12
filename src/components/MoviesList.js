@@ -1,15 +1,15 @@
 import React from 'react'
-import { useSearchContext } from '../hooks/useSearch'
+import { useMoviesContext } from '../hooks/useMovies'
 
 export const MoviesList = () => {
-	const { movies } = useSearchContext()
+	const { movies } = useMoviesContext()
 	if (movies.length) {
 		return (
-			<ul>
+			<div>
 				{movies.map(({ id, original_title }) => (
-					<li key={id}>{original_title}</li>
+					<div key={id}>{original_title}</div>
 				))}
-			</ul>
+			</div>
 		)
 	}
 	return <strong>no movie found :(</strong>

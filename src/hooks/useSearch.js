@@ -1,32 +1,21 @@
 import { useState, useEffect } from 'react'
 import constate from 'constate'
-import axios from 'axios'
-
-const apiKey = 'f3a05026119d09f84c9aaef927a18ac2'
-const apiImageLookupBaseUrl = 'https://image.tmdb.org/t/p/w154'
+import api from '../utils/api'
 
 const useSearch = () => {
-	const [results, setResults] = useState([])
-	const [movies, setMovies] = useState([])
 	const [query, setQuery] = useState('')
+	const [suggestions, setSuggestions] = useState([])
 
 	useEffect(() => {
-		const queryDatabase = async () => {
-			const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-			const res = await axios.get(apiUrl)
-			const movies = res.data.results.filter((movie) =>
-				movie.original_title.toLowerCase().includes(query.toLowerCase()),
-			)
-			setResults(movies)
+		const fetchMovies = async () => {
+			const res = await api.fetchMovieList(query)
+			setSuggestions(res)
 		}
-
-		if (query) queryDatabase()
-		else setResults([])
+		if (query) fetchMovies()
+		else setSuggestions([])
 	}, [query])
 
-	const fillList = () => setMovies(results)
-
-	return { fillList, movies, query, results, setQuery }
+	return { query, setQuery, suggestions }
 }
 
 export const [SearchProvider, useSearchContext] = constate(useSearch)
