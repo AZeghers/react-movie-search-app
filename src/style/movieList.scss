@@ -1,0 +1,16 @@
+.movie-list-item {
+	padding: 8px 12px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #dddddd;
+	}
+}
+
+.movie-list-item + .movie-list-item {
+	border-top: solid 1px #aaaaaa;
+}
+
+.no-movie {
+	margin-left: 12px;
+}

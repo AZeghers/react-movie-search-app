@@ -1,6 +1,6 @@
 import React from 'react'
 import { Searchbar } from './components/Searchbar'
-import { MoviesList } from './components/MoviesList'
+import { MovieList } from './components/MovieList'
 import { MovieCard } from './components/MovieCard'
 import { SearchProvider } from './hooks/useSearch'
 import { MoviesProvider } from './hooks/useMovies'
@@ -11,7 +11,7 @@ function App() {
 			<MoviesProvider>
 				<div className="heading-wrapper">
 					<div className="container">
-						<h1>bonjour c'est moi le movie search</h1>
+						<h1>Movie Search App</h1>
 					</div>
 				</div>
 				<div className="searchbar-wrapper">
@@ -21,7 +21,7 @@ function App() {
 				</div>
 				<div className="container">
 					<MovieCard />
-					<MoviesList />
+					<MovieList />
 				</div>
 			</MoviesProvider>
 		</SearchProvider>

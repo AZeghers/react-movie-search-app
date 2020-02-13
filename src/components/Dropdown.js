@@ -1,14 +1,15 @@
 import React from 'react'
+import { useMoviesContext } from '../hooks/useMovies'
 import { useSearchContext } from '../hooks/useSearch'
 import '../style/dropdown.scss'
-import { useMoviesContext } from '../hooks/useMovies'
 
 export const Dropdown = () => {
-	const { suggestions, setQuery } = useSearchContext()
-	const { fillMovieList } = useMoviesContext()
+	const { setQuery, suggestions } = useSearchContext()
+	const { fillMovieList, setCardIsOpen } = useMoviesContext()
 
 	const handleOnClick = (e) => {
 		setQuery(e.target.textContent)
+		setCardIsOpen(false)
 		fillMovieList(e.target.textContent)
 	}
 

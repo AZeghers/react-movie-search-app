@@ -1,12 +1,14 @@
 import React from 'react'
-import { useSearchContext } from '../hooks/useSearch'
-import '../style/searchbar.scss'
-import { Dropdown } from './Dropdown'
 import { useMoviesContext } from '../hooks/useMovies'
+import { useSearchContext } from '../hooks/useSearch'
+import { Dropdown } from './Dropdown'
+import '../style/searchbar.scss'
+
+const ENTER_KEY_CODE = 13
 
 export const Searchbar = () => {
 	const { query, setQuery } = useSearchContext()
-	const { fillMovieList } = useMoviesContext()
+	const { fillMovieList, setCardIsOpen } = useMoviesContext()
 
 	const handleOnChange = (e) => {
 		setQuery(e.target.value)
@@ -14,12 +16,14 @@ export const Searchbar = () => {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault()
+		setCardIsOpen(false)
 		fillMovieList(query)
 	}
 
 	const handleKeyStroke = (e) => {
-		if (e.keyCode === 13) {
+		if (e.keyCode === ENTER_KEY_CODE) {
 			e.target.blur()
+			setCardIsOpen(false)
 			fillMovieList(query)
 		}
 	}
@@ -32,8 +36,8 @@ export const Searchbar = () => {
 						type="search"
 						value={query}
 						onChange={handleOnChange}
-						placeholder="Search for a movie..."
 						onKeyDown={handleKeyStroke}
+						placeholder="Search for a movie..."
 					/>
 					<Dropdown />
 				</div>

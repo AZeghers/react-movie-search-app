@@ -1,26 +1,42 @@
 import React from 'react'
 import { useMoviesContext } from '../hooks/useMovies'
+import '../style/movieCard.scss'
 
 export const MovieCard = () => {
-	const { cardIsOpen, currMovie, setCardIsOpen } = useMoviesContext()
-	const { overview, poster, title, vote_average } = currMovie
+	const { cardIsOpen, selectedMovie, setCardIsOpen } = useMoviesContext()
+	const {
+		original_title,
+		overview,
+		poster,
+		title,
+		vote_average,
+	} = selectedMovie
+
+	const formattedTitle =
+		title === original_title ? `${title}` : `${title} (${original_title})`
+
+	const formattedDescription = overview ? overview : 'No description'
+
+	const handleOnClick = () => {
+		setCardIsOpen(false)
+	}
 
 	if (!cardIsOpen) return <div />
 	return (
 		<div>
-			<button
-				onClick={() => {
-					setCardIsOpen(false)
-				}}
-			>
-				{'< Back'}
-			</button>
-			<div className="movie-info">
-				<div>{title}</div>
-				<div>{vote_average}</div>
-				<div>{overview || 'no description'}</div>
+			<div className="back-button">
+				<div onClick={handleOnClick}>{'< Back'}</div>
 			</div>
-			<img className="movie-poster" src={poster} alt="movie-poster" />
+			<div className="movie-container">
+				<div className="movie-info">
+					<div>{formattedTitle}</div>
+					<div>{`Rating: ${vote_average}`}</div>
+					<div>{formattedDescription}</div>
+				</div>
+				<div className="image-container">
+					<img className="movie-poster" src={poster} alt="movie-poster" />
+				</div>
+			</div>
 		</div>
 	)
 }

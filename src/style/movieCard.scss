@@ -1,0 +1,43 @@
+.movie-container {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+
+.movie-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	div + div {
+		margin-top: 10px;
+	}
+}
+
+.image-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.movie-poster {
+	max-width: 200px;
+	padding: 0 20px;
+}
+
+.back-button {
+	display: flex;
+	margin: 10px 0 30px 0;
+
+	div {
+		cursor: pointer;
+		color: #eeeeee;
+		background-color: #aaaaaa;
+		border-radius: 10px;
+		padding: 6px 10px;
+
+		&:hover {
+			background-color: #bbbbbb;
+		}
+	}
+}
