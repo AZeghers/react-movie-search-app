@@ -2,12 +2,20 @@ import React from 'react'
 import { useMoviesContext } from '../hooks/useMovies'
 
 export const MoviesList = () => {
-	const { movies } = useMoviesContext()
+	const { movies, updateCurrentMovie, cardIsOpen } = useMoviesContext()
+	if (cardIsOpen) return <div />
 	if (movies.length) {
 		return (
 			<div>
-				{movies.map(({ id, original_title }) => (
-					<div key={id}>{original_title}</div>
+				{movies.map((movie) => (
+					<div
+						onClick={() => {
+							updateCurrentMovie(movie)
+						}}
+						key={movie.id}
+					>
+						{movie.title}
+					</div>
 				))}
 			</div>
 		)
